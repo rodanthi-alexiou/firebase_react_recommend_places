@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,600&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Alegreya';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  font-family: "Alegreya", cursive, sans-serif;
+  color: #ffffff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(https://i.pinimg.com/originals/84/5d/68/845d6879ed7e675ade3c518bb92187e9.gif);
+  background-size: cover;
+}
+
+.grid {
+  column-gap: 10px;
+  column-count: 3;
+  padding: 175px 20px 10px 20px;
+}
+
+.card {
+  display: inline-block;
+  width: 90%;
+  font-family:"Alegreya", monospace;
+  background-color: rgba(40, 116, 90, 0.438);
+  padding: 28px 28px 24px 20px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.input{
+  display: inline-block;
+  width: 90%;
+  font-family:"Alegreya", monospace;
+  background-color: rgba(40, 116, 90, 0.438);
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 10px;
+  text-align: justify;
+  border-radius: 15px;
+  border: 2px solid #164b30;
+}
+
+.app {
+  background: radial-gradient(circle, rgb(153, 58, 58), rgb(95, 62, 62));
+  justify-content: center;
+  width: 700px;
+  min-height: 200px;
+  height: min-content;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+
+.text{
+  text-align: center;
+  font-weight: 600;
+  font-size: 60px;
+
+}
+
+.text-card-title{
+  font-weight: 600;
+  font-size: 30px;
+
+}
+
+.text-card-info{
+  text-align:right;
+  font-weight: 600;
+  font-size: 15px;
+
+}
+
+.button {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: rgba(40, 116, 90, 0.438);
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 3px solid #1c5748;
+  cursor: pointer;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+}
+
+
+button:hover {
+  background-color: #59afa1;
+}
+
+button:focus {
+  outline: none;
+}
+
+button svg {
+  margin-right: 5px;
+}
