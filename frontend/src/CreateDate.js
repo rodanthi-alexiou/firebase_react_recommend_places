@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
   import './App.css';
   import React, {useEffect, useState} from 'react'
-import { Typography, TextField, Button, Tab, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
+import { Typography, TextField, Button, Tab, Checkbox, FormGroup, FormControlLabel, Input } from "@material-ui/core";
 import DateIdea from "./DateIdea"
 
 
@@ -24,11 +24,12 @@ const history = useHistory();
     return (
         <div>
             <h1>Ψάχνω Βόλτα</h1>
-            <div>
+            
             <h2> Για που: </h2>
-            <input type="text" placeholder="Περιοχή" color="#DEB887" onChange={e => setLocation(e.target.value)} />
-            </div>
-
+            <Input type="text" placeholder="Περιοχή"  onChange={e => setLocation(e.target.value)} />
+            
+            
+            <h2> Πότε; </h2>
           <div>
           <FormGroup>
             <FormControlLabel control={<Checkbox />} label="Μέρα" />

@@ -7,62 +7,87 @@ import {
   } from "react-router-dom";
   import './App.css';
   import React, {useEffect, useState} from 'react'
-import { Typography, TextField, Button, Tab, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
+import { Typography, TextField, Button, Tab, Checkbox, FormGroup, FormControlLabel, Input } from "@material-ui/core";
 import axios from "axios";
+import { db, auth } from './firebase';
 
 
 
 
 
-  function Login({setToken}) {
+  function Login() {
 
-    const [name, setUsername] = useState('');
-    const [pass, setPassword] = useState('');
-    const [list_users, setList] = useState([]);
-
-
-
-const history = useHistory();
-
-function handleSubmit(){
-    const user = {username: name, password: pass};
-    if(!list_users.find(x => x.username === name)){
-      axios
-        .post(`http://localhost:8000/api/users/`, user)
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [location, setLocation] = useState('');
+  
+    const [user, setUser] = useState(null);
+  
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((authUser) =>{
+        if (authUser) {
+          //user has logged in...
+          console.log(authUser);
+          setUser(authUser);
+  
+          if (authUser.displayName) {
+            //dont update username
+          } else {
+            // if we just created someone...
+            return authUser.updateProfile({
+              displayName: username,
+            });
+          }
+  
+        } else {
+          // user has logged out
+          setUser(null);
+        }
+      })
+  
+      return () => {
+        //perfom some cleanup actions
+        unsubscribe();
+      }
+    }, [user, username]);
+  
+  
+    const signUp = (event) => {
+      event.preventDefault();
+      
+      auth
+        .createUserWithEmailAndPassword(email,password)
+        .catch((error) => alert(error.message));
     }
-    setToken(user);
-}
-
-//function findUser({item}) {
-
-useEffect(() => {
-    axios
-    .get(`http://localhost:8000/api/users/`)
-    .then(res => setList(res.data))
-    .catch(err => console.log(err))
-
-    console.log(list_users.findIndex(x => x.username === 'rodanthiiii'));
-
-});
 
 
 
     return (
         <div>
-        <form >
-        <label>
-          <h2>Username</h2>
-          <input type="text" className="input" onChange={e => setUsername(e.target.value)}/>
-        </label>
-        <label>
-          <h2>Password</h2>
-          <input type="password" className="input" onChange={e => setPassword(e.target.value)}/>
-        </label>
-        <div>
-          <button type="submit" className="button" onClick={handleSubmit}>Submit</button>
+            <Input type="text" placeholder="username"  onChange={e => setUsername(e.target.value)} />
+            <button onClick={() => console.log(username)}>Log value</button>
+ 
+          <Input type="text" placeholder="username" onChange={e => setUsername(e.target.value)}
+          />
+        
+          <button onClick={() => console.log(username)}>Log value</button>
+          <Input
+          type="text"
+          placeholder="email"
+          onChange={(e)=> setEmail(e.target.value)}
+          />
+
+          <Input
+          type="password"
+          placeholder="password"
+          onChange={(e)=> setPassword(e.target.value)}
+          />
+      
+          <Button onClick={signUp}>Sign Up</Button>
+      
+        
         </div>
-      </form>
-      </div>
     );
   }
 

@@ -26,6 +26,11 @@ body {
   padding: 175px 20px 10px 20px;
 }
 
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+
 .card {
   display: inline-block;
   width: 90%;
